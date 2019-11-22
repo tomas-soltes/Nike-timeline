@@ -3,6 +3,7 @@ enterBtn.addEventListener("click",loadScreen);
 let randomNumber = Math.floor(Math.random() * (2200 - 1500 + 1)) + 1000;
 
 function loadScreen(){
+    document.getElementById("myAudio").play();
     document.querySelector(".intro-screen").style.opacity = "0";
     document.querySelector(".intro-screen").style.visibility = "hidden";
     setTimeout(init, randomNumber)
@@ -38,6 +39,7 @@ let actualItem = 0;
 /********  Init *********/
 
 function init() {
+    document.querySelector(".scroll-indicator").style.opacity = "1";
     let yOffset = (window.innerHeight * 0) + (window.innerHeight / 2);
     document.querySelector(".scroll-container-wrapper").scrollTo(0, yOffset);
     let div1 = document.querySelector(".scroll-container-wrapper");
@@ -68,6 +70,7 @@ function init() {
 
     function synchSnapToScroll() {
         document.querySelector(".scroll-container-wrapper").addEventListener("scroll", function () {
+            document.querySelector(".scroll-indicator").style.opacity = "0";
             var div1 = document.querySelector(".scroll-container-wrapper");
             window.scrollTo(0, div1.scrollTop);
 

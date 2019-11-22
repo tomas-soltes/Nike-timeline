@@ -13,6 +13,91 @@ h2 {
   font-weight: 700;
 }
 
+.scroll-indicator {
+  width: 12px;
+  margin: 0 auto;
+  position: fixed;
+  bottom: 24%;
+  left: 60%;
+  transform: translateX(-50%);
+  transition: all .1s ease-out;
+  z-index: 999999;
+  opacity: 0;
+}
+.scroll-indicator::before, .scroll-indicator::after {
+  content: '';
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.scroll-indicator::before {
+  width: 12px;
+  height: 12px;
+  border-radius: 10px;
+  border: 1px solid #fff;
+  animation: dot 3s infinite ease-in-out;
+}
+.scroll-indicator::after {
+  width: 7px;
+  height: 7px;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  transform: rotate(45deg);
+  animation: arrow 3s infinite ease-in-out;
+  animation-delay: 0.75s;
+  opacity: 0.25;
+}
+.scroll-indicator > div {
+  display: block;
+}
+.scroll-indicator > div::before, .scroll-indicator > div::after {
+  content: '';
+  display: block;
+  margin: 5px auto;
+  border-radius: 10px;
+  border: 1px solid #fff;
+  animation: dot 3s infinite ease-in-out;
+}
+.scroll-indicator > div::before {
+  width: 8px;
+  height: 8px;
+  animation-delay: 0.25s;
+}
+.scroll-indicator > div::after {
+  width: 6px;
+  height: 6px;
+  animation-delay: 0.5s;
+}
+@keyframes dot {
+  0% {
+    transform: scale(0.75);
+    opacity: 0.25;
+ }
+  25% {
+    transform: scale(1);
+    opacity: 1;
+ }
+  100% {
+    transform: scale(0.75);
+    opacity: 0.25;
+ }
+}
+@keyframes arrow {
+  0% {
+    transform: scale(0.75) rotate(45deg);
+    opacity: 0.25;
+ }
+  25% {
+    transform: scale(1) rotate(45deg);
+    opacity: 1;
+ }
+  100% {
+    transform: scale(0.75) rotate(45deg);
+    opacity: 0.25;
+ }
+}
+
+
 .scroller::-webkit-scrollbar {
   background-color:transparent;
   width:6px
@@ -75,6 +160,7 @@ h2 {
   top: 0;
   margin: 0;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   transition: all .3s ease;
   display: grid;
   grid-template-columns: 100%;
@@ -192,6 +278,7 @@ button {
   left: 0;
   width: 100vw;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   background-color: #1c1c1c;
   z-index: 110;
   color: white;
@@ -255,6 +342,7 @@ button {
   left: 0;
   width: 100vw;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   background-color: #1c1c1c;
   z-index: 100;
   transition: 0.3s ease-in-out;
@@ -495,7 +583,7 @@ img {
   right: 10%;
   transition-duration: 0.3s;
   cursor: pointer;
-  z-index: 10;
+  z-index: 1000;
 }
 
 span,
@@ -553,6 +641,11 @@ span:after {
 }
 
 @media (max-width: 900px) {
+
+  .scroll-indicator {
+    bottom: 39%;
+    left: 50%;
+  }
 
   /* Intro-screen */
 
